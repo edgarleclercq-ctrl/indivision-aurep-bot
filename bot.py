@@ -937,7 +937,7 @@ async def cmd_fiches_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ─────────────────────────────────────────────
 # MAIN
 # ─────────────────────────────────────────────
-def main():
+async def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
 
     # Commandes
@@ -964,7 +964,8 @@ def main():
         )
 
     logger.info("✅ Bot AUREP démarré !")
-    app.run_polling(allowed_updates=Update.ALL_TYPES)
+    await app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+    asyncio.run(main())
